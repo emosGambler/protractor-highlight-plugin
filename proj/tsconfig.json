@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "outDir": "dist",
+      "sourceMap": true
+    },
+    "files": [
+      "./src/logs/logs.ts",
+      "./src/index.ts"
+    ],
+    "include": [
+      "*.ts"
+    ]
+  }
