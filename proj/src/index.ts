@@ -8,13 +8,16 @@ let myPlugin: ProtractorPlugin = {
     onPageLoad(browser: ProtractorBrowser) {
         browser.executeScript(`
                 var focusTime = 500;
-
-                document.addEventListener('click', function(e) {
-                    e = e || window.event;
-                    var target = e.target || e.srcElement;
-                    styling = window.getComputedStyle(target).getPropertyValue('background-color');;
-                    demo(target, styling);
-                }, false);
+                var events = ['click', 'mousedown', 'mouseup', 'focus', 'blur', 'keydown', 'change', 'mouseup', 'click', 'dblclick', 'mousemove', 'mouseover', 'mouseout', 'mousewheel', 'keydown', 'keyup', 'keypress', 'textInput', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'resize', 'scroll', 'zoom', 'focus', 'blur', 'select', 'change', 'submit', 'reset'];
+                
+                events.forEach(event => {
+                    document.addEventListener(event, function(e) {
+                        e = e || window.event;
+                        var target = e.target || e.srcElement;
+                        styling = window.getComputedStyle(target).getPropertyValue('background-color');;
+                        demo(target, styling);
+                    }, false);
+                });
 
                 document.addEventListener('keydown', function(e) {
                     e = e || window.event;
