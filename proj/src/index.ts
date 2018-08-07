@@ -1,4 +1,4 @@
-import { ProtractorPlugin, ProtractorBrowser, ElementFinder, $ } from 'protractor';
+import { ProtractorPlugin, ProtractorBrowser } from 'protractor';
 
 declare var module: any;
 

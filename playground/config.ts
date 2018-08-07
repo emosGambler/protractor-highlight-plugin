@@ -21,7 +21,6 @@ export let config: Config = {
         }));
     },
     plugins: [{
-        package: 'protractor-logs'
+        package: 'protractor-highlight-plugin'
     }],
-        //webDriverLogDir: 'logs/'
 };
