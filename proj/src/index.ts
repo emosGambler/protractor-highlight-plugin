@@ -2,10 +2,12 @@ import { ProtractorPlugin, ProtractorBrowser } from 'protractor';
 
 declare var module: any;
 
-// creating a "var module: any" will allow use of module.exports
-let color = 'blue';
+let color;
 
 let myPlugin: ProtractorPlugin = {
+    setup() {
+        color = this.config.options.color;
+    },
     onPageLoad(browser: ProtractorBrowser) {
         browser.executeScript(`
                 var focusTime = 500;
@@ -15,7 +17,7 @@ let myPlugin: ProtractorPlugin = {
                     document.addEventListener(event, function(e) {
                         e = e || window.event;
                         var target = e.target || e.srcElement;
-                        styling = window.getComputedStyle(target).getPropertyValue('background-color');;
+                        styling = window.getComputedStyle(target).getPropertyValue('background-color');
                         demo(target, styling);
                     }, false);
                 });
@@ -43,15 +45,3 @@ let myPlugin: ProtractorPlugin = {
 };
 
 module.exports = myPlugin;
-
-// document.addEventListener('click'), function(e) {
-//     e = e || window.event;
-//     var target = e.target || e.srcElement,
-//         text = target.textContent
-// }
-
-// document.getElementsByTagName("body")[0].onclick = something;
-            
-//             function something() {
-//                 this.setAttribute("style", "background-color: red");
-//             }

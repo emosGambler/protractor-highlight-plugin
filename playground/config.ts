@@ -21,6 +21,9 @@ export let config: Config = {
         }));
     },
     plugins: [{
-        package: 'protractor-highlight-plugin'
+        package: 'protractor-highlight-plugin',
+        options: {
+            color: 'green'
+        }
     }],
 };
