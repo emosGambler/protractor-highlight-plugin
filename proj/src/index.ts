@@ -3,6 +3,7 @@ import { ProtractorPlugin, ProtractorBrowser } from 'protractor';
 declare var module: any;
 
 // creating a "var module: any" will allow use of module.exports
+let color = 'blue';
 
 let myPlugin: ProtractorPlugin = {
     onPageLoad(browser: ProtractorBrowser) {
@@ -19,14 +20,8 @@ let myPlugin: ProtractorPlugin = {
                     }, false);
                 });
 
-                document.addEventListener('keydown', function(e) {
-                    e = e || window.event;
-                    var target = e.target || e.srcElement;
-                    demo(target);
-                }, false);
-
                 function before(target) {
-                    target.setAttribute("style", "background-color: red");
+                    target.setAttribute("style", "background-color: ${color}");
                 }
 
                 function after(target, defaultStyle) {
@@ -43,10 +38,7 @@ let myPlugin: ProtractorPlugin = {
                     after(target, defaultStyle);
                 }
 
-                // ('click mousedown mouseup focus blur keydown change mouseup click dblclick mousemove mouseover mouseout mousewheel keydown keyup keypress textInput touchstart touchmove touchend touchcancel resize scroll zoom focus blur select change submit reset', function(e) {
-
             `);
-            //element.setAttribute("style", "background-color: red");
     }
 };
 
