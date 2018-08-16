@@ -18,10 +18,12 @@ let myPlugin: ProtractorPlugin = {
         let defaultEvents: string[] = ['click', 'textInput'];
         let defaultFocusTime: number = 500;
         
-        focusTime = this.config.options.focusTime;
-        style = this.config.options.style;
-        includeEvents = this.config.options.includeEvents;
-
+        if (this.config.options) {
+            focusTime = this.config.options.focusTime;
+            style = this.config.options.style;
+            includeEvents = this.config.options.includeEvents;
+        }
+        
         switch (style) {
             case "blue":
                 styleValue = `background-color: #a8d1ff; opacity: ${defaultOpacity};`;
@@ -44,41 +46,40 @@ let myPlugin: ProtractorPlugin = {
         events = includeEvents.map((event) => {
             return `"${event}"`;
         });
-        console.log(events.toString());
     },
     onPageLoad(browser: ProtractorBrowser) {
         browser.executeScript(`
-                var focusTime = ${focusTime};
-                var events = [${events}];
+            var focusTime = ${focusTime};
+            var events = [${events}];
 
-                events.forEach(event => {
-                    document.addEventListener(event, function(e) {
-                        e = e || window.event;
-                        var target = e.target || e.srcElement;
-                        styling = window.getComputedStyle(target).getPropertyValue('background-color');
-                        demo(target, styling);
-                    }, false);
-                });
+            events.forEach(event => {
+                document.addEventListener(event, function(e) {
+                    e = e || window.event;
+                    var target = e.target || e.srcElement;
+                    styling = window.getComputedStyle(target).getPropertyValue('background-color');
+                    demo(target, styling);
+                }, false);
+            });
 
-                function before(target) {
-                    target.setAttribute("style", "${styleValue}");
-                }
+            function before(target) {
+                target.setAttribute("style", "${styleValue}");
+            }
 
-                function after(target, defaultStyle) {
-                    target.setAttribute("style", "background-color: defaultStyle");
-                }
+            function after(target, defaultStyle) {
+                target.setAttribute("style", "background-color: defaultStyle");
+            }
 
-                function sleep(ms) {
-                    return new Promise(resolve => setTimeout(resolve, ms));
-                }
-            
-                async function demo(target, defaultStyle) {
-                    before(target);
-                    await sleep(focusTime);
-                    after(target, defaultStyle);
-                }
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        
+            async function demo(target, defaultStyle) {
+                before(target);
+                await sleep(focusTime);
+                after(target, defaultStyle);
+            }
 
-            `);
+        `);
     }
 };
 

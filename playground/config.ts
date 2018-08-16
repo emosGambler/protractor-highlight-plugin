@@ -23,9 +23,9 @@ export let config: Config = {
     plugins: [{
         package: 'protractor-highlight-plugin',
         options: {
-            style: 'green',
-            //focusTime: 400,
-            includeEvents: ['click', 'textInput', 'change'], //['mousedown', 'focus', 'change', 'mouseup', 'click', 'dblclick', 'mousemove', 'mouseover', 'mouseout', 'mousewheel', 'keydown', 'keyup', 'keypress', 'textInput', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'resize', 'scroll', 'zoom', 'blur', 'select', 'change', 'submit', 'reset'];
+        //     style: 'green',
+        //     //focusTime: 400,
+        //     includeEvents: ['click'], //['mousedown', 'focus', 'change', 'mouseup', 'click', 'dblclick', 'mousemove', 'mouseover', 'mouseout', 'mousewheel', 'keydown', 'keyup', 'keypress', 'textInput', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'resize', 'scroll', 'zoom', 'blur', 'select', 'change', 'submit', 'reset'];
         }
     }],
 };
