@@ -3,7 +3,7 @@
 The plugin highlights elements on which actions are performed by protractor, so that QA (or developer) can see what element is protractor exactly working on.
 # Installation
 
-`npm install protractor-highlight-plugin` where your package.json is will add plugin to your node_modules
+`npm install --save protractor-highlight-plugin` where your package.json is will add plugin to your node_modules
 
 # Using
 
